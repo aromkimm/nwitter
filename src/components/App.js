@@ -13,8 +13,12 @@ const App = () => {
   };
   useEffect(() => {
     onAuthStateChanged(auth, currentUser => {
-      const { displayName, uid } = currentUser;
-      setUser({ displayName, uid });
+      if (currentUser) {
+        const { displayName, uid } = currentUser;
+        setUser({ displayName, uid });
+      } else {
+        setUser(null);
+      }
       setInit(true);
     });
   }, []);
