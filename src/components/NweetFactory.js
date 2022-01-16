@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+
 import { db, storage } from '../firebase';
 
 const NweetFactory = ({ user }) => {
@@ -55,20 +58,44 @@ const NweetFactory = ({ user }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className="factoryForm" onSubmit={onSubmit}>
+      <div className="factoryInput__container">
+        <input
+          className="factoryInput__input"
+          value={nweet}
+          onChange={onChange}
+          type="text"
+          placeholder="What's on your mind?"
+          maxLength={120}
+        />
+        <input className="factoryInput__arrow" type="submit" value="&rarr;" />
+      </div>
+      <label className="factoryInput__label" htmlFor="attach-file">
+        <span>Add photos</span>
+        <FontAwesomeIcon icon={faPlus} />
+      </label>
       <input
-        type="text"
-        placeholder="What's on your mind?"
-        value={nweet}
-        onChange={onChange}
-        maxLength={120}
+        id="attach-file"
+        type="file"
+        accept="image/*"
+        onChange={onFileChange}
+        style={{
+          opacity: 0,
+        }}
       />
-      <input type="file" accept="image/*" onChange={onFileChange} />
-      <input type="submit" value="Nweet" />
       {attachment && (
-        <div>
-          <img src={attachment} width="50px" height="50px" alt="" />
-          <button onClick={onClearAttachment}>Clear</button>
+        <div className="factoryForm__attachment">
+          <img
+            src={attachment}
+            style={{
+              backgroundImage: attachment,
+            }}
+            alt=""
+          />
+          <div className="factoryForm__clear" onClick={onClearAttachment}>
+            <span>Remove</span>
+            <FontAwesomeIcon icon={faTimes} />
+          </div>
         </div>
       )}
     </form>

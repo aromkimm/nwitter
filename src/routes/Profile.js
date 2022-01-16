@@ -47,21 +47,32 @@ const Profile = ({ user, refreshUser }) => {
   }, []);
 
   return (
-    <>
-      <form onSubmit={onSubmit}>
+    <div className="container">
+      <form className="profileForm" onSubmit={onSubmit}>
         <input
+          className="formInput"
           type="text"
           placeholder="Display name"
-          onChange={onChange}
           value={displayName}
+          autoFocus
+          onChange={onChange}
         />
-        <input type="submit" value="Update Profile" />
+        <input
+          className="formBtn"
+          type="submit"
+          value="Update Profile"
+          style={{
+            marginTop: 10,
+          }}
+        />
       </form>
-      <button onClick={logout}>Log Out</button>
+      <span className="formBtn cancelBtn logOut" onClick={logout}>
+        Log Out
+      </span>
       {nweets.map(nweet => (
         <Nweet key={nweet.id} nweet={nweet} isOwner />
       ))}
-    </>
+    </div>
   );
 };
 export default Profile;

@@ -1,3 +1,9 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faTwitter,
+  faGoogle,
+  faGithub,
+} from '@fortawesome/free-brands-svg-icons';
 import {
   GoogleAuthProvider,
   GithubAuthProvider,
@@ -21,14 +27,20 @@ const Auth = () => {
   };
 
   return (
-    <div>
+    <div className="authContainer">
+      <FontAwesomeIcon
+        icon={faTwitter}
+        color={'#04AAFF'}
+        size="3x"
+        style={{ marginBottom: 30 }}
+      />
       <AuthForm />
-      <div>
-        <button name="google" onClick={continueWithSNS}>
-          Continue with Google
+      <div className="authBtns">
+        <button className="authBtn" name="google" onClick={continueWithSNS}>
+          Continue with Google <FontAwesomeIcon icon={faGoogle} />
         </button>
-        <button name="github" onClick={continueWithSNS}>
-          Continue with Github
+        <button className="authBtn" name="github" onClick={continueWithSNS}>
+          Continue with Github <FontAwesomeIcon icon={faGithub} />
         </button>
       </div>
     </div>

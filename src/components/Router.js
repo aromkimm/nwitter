@@ -8,7 +8,16 @@ const AppRouter = ({ isLoggedIn, user, refreshUser }) => {
   return (
     <Router>
       {isLoggedIn && <Navigation user={user} />}
-      <Routes>
+      <Routes
+        style={{
+          maxWidth: 890,
+          width: '100%',
+          margin: '0 auto',
+          marginTop: 80,
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
         {isLoggedIn ? (
           <>
             <Route path="" element={<Home user={user} />} />
